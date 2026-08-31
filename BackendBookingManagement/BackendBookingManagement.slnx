@@ -1,0 +1,5 @@
+<Solution>
+  <Project Path="BackendBookingManagement.Domain/BackendBookingManagement.Domain.csproj" />
+  <Project Path="BackendBookingManagement.Infrastructure/BackendBookingManagement.Infrastructure.csproj" />
+  <Project Path="BackendBookingManagement/BackendBookingManagement.csproj" />
+</Solution>

@@ -1,0 +1,17 @@
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Infrastructure.deps.json
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Infrastructure.runtimeconfig.json
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Infrastructure.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Infrastructure.pdb
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Domain.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Domain.pdb
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.csproj.AssemblyReference.cache
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.GeneratedMSBuildEditorConfig.editorconfig
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.AssemblyInfoInputs.cache
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.AssemblyInfo.cs
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.csproj.CoreCompileInputs.cache
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendB.53C9CE39.Up2Date
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\refint\BackendBookingManagement.Infrastructure.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.pdb
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.genruntimeconfig.cache
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\ref\BackendBookingManagement.Infrastructure.dll
