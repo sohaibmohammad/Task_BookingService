@@ -60,7 +60,8 @@ namespace BackendBookingManagement.Infrastructure.Migrations
             modelBuilder.Entity("BackendBookingManagement.Domain.src.Entity.Resource", b =>
                 {
                     b.Property<string>("Id")
-                        .HasColumnType("nvarchar(450)");
+                        .HasMaxLength(50)
+                        .HasColumnType("nvarchar(50)");
 
                     b.Property<string>("Description")
                         .HasMaxLength(500)

@@ -5,7 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BackendBookingManagement.Infrastructure.Configuration
+namespace BackendBookingManagement.Infrastructure.src.Configuration
 {
 	public class BookingConfiguration : IEntityTypeConfiguration<Booking>
 	{
@@ -48,13 +48,18 @@ namespace BackendBookingManagement.Infrastructure.Configuration
 		public void Configure(EntityTypeBuilder<Resource> builder)
 		{
 			builder.ToTable("Resources");
+
 			builder.HasKey(r => r.Id);
+
+ 			builder.Property(r => r.Id)
+				  .HasMaxLength(50);
+
 			builder.Property(r => r.Name)
 				  .IsRequired()
 				  .HasMaxLength(100);
+
 			builder.Property(r => r.Description)
 				  .HasMaxLength(500);
-
 		}
 	}
 }

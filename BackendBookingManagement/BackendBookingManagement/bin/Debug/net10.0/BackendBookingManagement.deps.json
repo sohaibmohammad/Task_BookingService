@@ -851,6 +851,17 @@
           }
         }
       },
+      "BackendBookingManagement.Application/1.0.0": {
+        "dependencies": {
+          "BackendBookingManagement.Domain": "1.0.0"
+        },
+        "runtime": {
+          "BackendBookingManagement.Application.dll": {
+            "assemblyVersion": "1.0.0.0",
+            "fileVersion": "1.0.0.0"
+          }
+        }
+      },
       "BackendBookingManagement.Domain/1.0.0": {
         "runtime": {
           "BackendBookingManagement.Domain.dll": {
@@ -861,6 +872,7 @@
       },
       "BackendBookingManagement.Infrastructure/1.0.0": {
         "dependencies": {
+          "BackendBookingManagement.Application": "1.0.0",
           "BackendBookingManagement.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "10.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.11"
@@ -1229,6 +1241,11 @@
       "sha512": "sha512-s8yUYuYYu+PAwvBdhLG1KyrGrk9gkYeuPxfAsXsTqqWyepwSyEw8hAaflW4nO98NG52YpYI1am2+9o+79h2RtQ==",
       "path": "system.security.cryptography.protecteddata/9.0.11",
       "hashPath": "system.security.cryptography.protecteddata.9.0.11.nupkg.sha512"
+    },
+    "BackendBookingManagement.Application/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
     },
     "BackendBookingManagement.Domain/1.0.0": {
       "type": "project",

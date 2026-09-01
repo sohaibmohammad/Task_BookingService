@@ -1183,6 +1183,19 @@
           "buildTransitive/net8.0/_._": {}
         }
       },
+      "BackendBookingManagement.Application/1.0.0": {
+        "type": "project",
+        "framework": ".NETCoreApp,Version=v10.0",
+        "dependencies": {
+          "BackendBookingManagement.Domain": "1.0.0"
+        },
+        "compile": {
+          "bin/placeholder/BackendBookingManagement.Application.dll": {}
+        },
+        "runtime": {
+          "bin/placeholder/BackendBookingManagement.Application.dll": {}
+        }
+      },
       "BackendBookingManagement.Domain/1.0.0": {
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
@@ -1197,6 +1210,7 @@
         "type": "project",
         "framework": ".NETCoreApp,Version=v10.0",
         "dependencies": {
+          "BackendBookingManagement.Application": "1.0.0",
           "BackendBookingManagement.Domain": "1.0.0",
           "Microsoft.EntityFrameworkCore": "10.0.11",
           "Microsoft.EntityFrameworkCore.SqlServer": "10.0.11"
@@ -3692,6 +3706,11 @@
         "system.security.cryptography.protecteddata.nuspec",
         "useSharedDesignerContext.txt"
       ]
+    },
+    "BackendBookingManagement.Application/1.0.0": {
+      "type": "project",
+      "path": "../BackendBookingManagement.Application/BackendBookingManagement.Application.csproj",
+      "msbuildProject": "../BackendBookingManagement.Application/BackendBookingManagement.Application.csproj"
     },
     "BackendBookingManagement.Domain/1.0.0": {
       "type": "project",

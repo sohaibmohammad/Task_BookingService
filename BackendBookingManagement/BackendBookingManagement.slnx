@@ -1,4 +1,5 @@
 <Solution>
+  <Project Path="BackendBookingManagement.Application/BackendBookingManagement.Application.csproj" Id="7ae12832-4d74-4c8d-a7f2-cc20c93753f5" />
   <Project Path="BackendBookingManagement.Domain/BackendBookingManagement.Domain.csproj" />
   <Project Path="BackendBookingManagement.Infrastructure/BackendBookingManagement.Infrastructure.csproj" />
   <Project Path="BackendBookingManagement/BackendBookingManagement.csproj" />

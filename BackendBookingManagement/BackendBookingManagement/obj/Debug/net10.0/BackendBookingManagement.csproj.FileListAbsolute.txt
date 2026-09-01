@@ -171,3 +171,6 @@ D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin\Debug\net10.0\tr\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin\Debug\net10.0\zh-Hans\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin\Debug\net10.0\zh-Hant\Microsoft.CodeAnalysis.Workspaces.MSBuild.resources.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin\Debug\net10.0\BackendBookingManagement.Application.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\bin\Debug\net10.0\BackendBookingManagement.Application.pdb
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement\obj\Debug\net10.0\BackendBookingManagement.sourcelink.json

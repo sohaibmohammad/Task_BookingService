@@ -15,3 +15,6 @@ D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Inf
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.pdb
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.genruntimeconfig.cache
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\ref\BackendBookingManagement.Infrastructure.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Application.dll
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\bin\Debug\net10.0\BackendBookingManagement.Application.pdb
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Infrastructure\obj\Debug\net10.0\BackendBookingManagement.Infrastructure.sourcelink.json
