@@ -3725,6 +3725,7 @@
   },
   "projectFileDependencyGroups": {
     "net10.0": [
+      "BackendBookingManagement.Application >= 1.0.0",
       "BackendBookingManagement.Domain >= 1.0.0",
       "BackendBookingManagement.Infrastructure >= 1.0.0",
       "Microsoft.AspNetCore.OpenApi >= 10.0.11",
@@ -3767,6 +3768,9 @@
           "framework": "net10.0",
           "targetAlias": "net10.0",
           "projectReferences": {
+            "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Application\\BackendBookingManagement.Application.csproj": {
+              "projectPath": "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Application\\BackendBookingManagement.Application.csproj"
+            },
             "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Domain\\BackendBookingManagement.Domain.csproj": {
               "projectPath": "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Domain\\BackendBookingManagement.Domain.csproj"
             },

@@ -1093,6 +1093,9 @@
             "framework": "net10.0",
             "targetAlias": "net10.0",
             "projectReferences": {
+              "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Application\\BackendBookingManagement.Application.csproj": {
+                "projectPath": "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Application\\BackendBookingManagement.Application.csproj"
+              },
               "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Domain\\BackendBookingManagement.Domain.csproj": {
                 "projectPath": "D:\\Task Booking Management\\BackendBookingManagement\\BackendBookingManagement.Domain\\BackendBookingManagement.Domain.csproj"
               },

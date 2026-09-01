@@ -1,9 +1,9 @@
-﻿using BackendBookingManagement.Application.Common;
+﻿using BackendBookingManagement.Application.src.Common;
 using System;
 using System.Collections.Generic;
 using System.Text;
 
-namespace BackendBookingManagement.Application.Interfaces;
+namespace BackendBookingManagement.Application.src.Interfaces.Repositories;
 
 public interface IRepository<T,TKey> where T : class
 {

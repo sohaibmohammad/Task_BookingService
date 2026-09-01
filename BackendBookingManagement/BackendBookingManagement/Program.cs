@@ -1,4 +1,6 @@
+using BackendBookingManagement.Application.Interfaces.Repositories;
 using BackendBookingManagement.Infrastructure.src.Database;
+using BackendBookingManagement.Infrastructure.src.Repositories;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -11,6 +13,11 @@ builder.Services.AddOpenApi();
 
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+
+builder.Services.AddScoped<IUnitOfWork, UnitOfWork>();
+builder.Services.AddScoped(typeof(IRepository<,>), typeof(Repository<,>));
+builder.Services.AddScoped<IBookingRepository, BookingRepository>();
+
 
 builder.Services.AddDbContext<AppDbContext>(options =>
 options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"))

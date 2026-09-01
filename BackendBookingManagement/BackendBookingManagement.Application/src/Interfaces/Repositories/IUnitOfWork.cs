@@ -1,4 +1,4 @@
-﻿namespace BackendBookingManagement.Application.Interfaces;
+﻿namespace BackendBookingManagement.Application.src.Interfaces.Repositories;
 
 public interface IUnitOfWork : IDisposable
 {

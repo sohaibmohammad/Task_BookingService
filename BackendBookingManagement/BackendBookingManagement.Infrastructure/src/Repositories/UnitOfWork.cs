@@ -1,4 +1,4 @@
-﻿using BackendBookingManagement.Application.Interfaces;
+﻿using BackendBookingManagement.Application.src.Interfaces.Repositories;
 using BackendBookingManagement.Infrastructure.src.Database;
 using System;
 using System.Collections.Generic;
@@ -6,7 +6,7 @@ using System.Text;
 
 namespace BackendBookingManagement.Infrastructure.src.Repositories
 {
-	internal class UnitOfWork(AppDbContext context ,IBookingRepository bookingRepository) : IUnitOfWork
+	public class UnitOfWork(AppDbContext context ,IBookingRepository bookingRepository) : IUnitOfWork
 	{
 		private readonly AppDbContext _context = context;
 		public IBookingRepository Bookings { get; }= bookingRepository;

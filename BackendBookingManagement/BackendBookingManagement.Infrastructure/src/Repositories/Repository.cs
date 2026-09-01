@@ -1,5 +1,5 @@
 ﻿using BackendBookingManagement.Application.Common;
-using BackendBookingManagement.Application.Interfaces;
+using BackendBookingManagement.Application.Interfaces.Repositories;
 using BackendBookingManagement.Domain.src.Entity;
 using BackendBookingManagement.Infrastructure.src.Database;
 using BackendBookingManagement.Infrastructure.src.Exensions;
