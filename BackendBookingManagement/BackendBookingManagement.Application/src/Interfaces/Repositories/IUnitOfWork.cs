@@ -1,7 +1,10 @@
-﻿namespace BackendBookingManagement.Application.src.Interfaces.Repositories;
+﻿using Microsoft.EntityFrameworkCore.Storage;
+namespace BackendBookingManagement.Application.src.Interfaces.Repositories;
 
 public interface IUnitOfWork : IDisposable
 {
 	IBookingRepository Bookings { get; }
 	Task<int> CompleteAsync(CancellationToken cancellationToken = default);
+
+	Task<IDbContextTransaction> BeginTransactionAsync(CancellationToken cancellationToken = default);
 }

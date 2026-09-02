@@ -13,6 +13,5 @@ public class PaginationParams
 		set => _pageSize = (value > MaxPageSize) ? MaxPageSize : value;
 	}
 
-	public string? SearchTerm { get; set; }
-	public string? SortBy { get; set; }
+ 	public string? SortBy { get; set; }
 }

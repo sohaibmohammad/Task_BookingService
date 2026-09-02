@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("BackendBookingManagement.Infrastructure")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+0087fcd7e21cfcdbec8f97905e436d3d179a8e1e")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+7ba4ae6a1f954343855a8dadf4dec8ee6d34d3c8")]
 [assembly: System.Reflection.AssemblyProductAttribute("BackendBookingManagement.Infrastructure")]
 [assembly: System.Reflection.AssemblyTitleAttribute("BackendBookingManagement.Infrastructure")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

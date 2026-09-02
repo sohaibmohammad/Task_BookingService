@@ -10,4 +10,5 @@ public interface IBookingRepository : IRepository<Booking, Guid>
  	Task<PagedResult<Booking>> GetBookingsByResourceIdAsync(string resourceId, int pageNumber, int pageSize, BookingStatus? status = null, bool trackChanges = false, CancellationToken cancellationToken = default);
 	Task<Booking?> GetByIdWithResourceAsync(Guid id, bool trackChanges = false, CancellationToken cancellationToken = default);
 	Task<PagedResult<Booking>> GetBookingsByUserIdAsync(string userId, BookingStatus? status = null, bool trackChanges = false, int pageNumber = 1, int pageSize = 10, CancellationToken cancellationToken = default);
+	Task<IEnumerable<Booking>> GetActiveBookingsForResourceAsync(string resourceId, DateTime startOfDay, DateTime endOfDay);
 }

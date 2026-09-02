@@ -10,3 +10,4 @@ D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Dom
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Domain\obj\Debug\net10.0\BackendBookingManagement.Domain.pdb
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Domain\obj\Debug\net10.0\ref\BackendBookingManagement.Domain.dll
 D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Domain\obj\Debug\net10.0\BackendBookingManagement.Domain.sourcelink.json
+D:\Task Booking Management\BackendBookingManagement\BackendBookingManagement.Domain\obj\Debug\net10.0\BackendBookingManagement.Domain.csproj.AssemblyReference.cache

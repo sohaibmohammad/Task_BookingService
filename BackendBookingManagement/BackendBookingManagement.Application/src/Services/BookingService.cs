@@ -13,6 +13,7 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 	public async Task CancelBookingAsync(Guid id)
 	{
 		var booking = await bookingRepository.GetByIdAsync(id);
+		
 
 		if (booking == null)
 		{
@@ -23,6 +24,10 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 		{
 			throw new InvalidOperationException("The reservation is not available.");
 		}
+		if (booking.StartDateTime <= DateTime.UtcNow)
+		{
+			throw new InvalidOperationException("You cannot cancel a booking that has already started or passed.");
+		}
 
 		booking.Status = BookingStatus.Canceled;
 
@@ -30,36 +35,58 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 		await unitOfWork.CompleteAsync();
 	}
 
-	
+	public async Task<IEnumerable<BookedTimeSlotDto>> GetBookedTimeSlotsAsync(string resourceId, DateTime date)
+	{
+ 		var startOfDay = date.Date;
+		var endOfDay = date.Date.AddDays(1).AddTicks(-1);
+		var bookings = await unitOfWork.Bookings.GetActiveBookingsForResourceAsync(resourceId, startOfDay, endOfDay);
+
+ 		return bookings.Select(b => new BookedTimeSlotDto
+		{
+			StartDateTime = b.StartDateTime,
+			EndDateTime = b.EndDateTime
+		}).OrderBy(b => b.StartDateTime).ToList();
+	}
 
 	public async Task<BookingResponseDto?> CreateBookingAsync(CreateBookingDto dto)
 	{
-		var isAvailable = await bookingRepository.IsResourceAvailableAsync(
-					dto.ResourceId,
-					dto.StartDateTime,
-					dto.EndDateTime
-				);
-
-		if (!isAvailable)
+		using var transaction = await unitOfWork.BeginTransactionAsync();
+		try
 		{
-			throw new InvalidOperationException("The resource is unavailable at this specific time.");
+			var isAvailable = await bookingRepository.IsResourceAvailableAsync(
+				dto.ResourceId,
+				dto.StartDateTime,
+				dto.EndDateTime
+			);
+
+			if (!isAvailable)
+			{
+				throw new InvalidOperationException("The resource is unavailable at this specific time.");
+			}
+
+			var booking = new Booking
+			{
+				Id = Guid.NewGuid(),
+				ResourceId = dto.ResourceId,
+				UserId = dto.UserId,
+				StartDateTime = dto.StartDateTime,
+				EndDateTime = dto.EndDateTime,
+				CreatedAt = DateTime.UtcNow,
+				Status = BookingStatus.Confirmed
+			};
+
+			await bookingRepository.AddAsync(booking);
+			await unitOfWork.CompleteAsync();
+
+ 			await transaction.CommitAsync();
+
+			return booking.ToDto();
 		}
-
-		var booking = new Booking
+		catch
 		{
-			Id = Guid.NewGuid(),
-			ResourceId = dto.ResourceId,
-			UserId = dto.UserId,
-			StartDateTime = dto.StartDateTime,
-			EndDateTime = dto.EndDateTime,
-			CreatedAt = DateTime.UtcNow,
-			Status = BookingStatus.Confirmed
-		};
-
-		await bookingRepository.AddAsync(booking);
-		await unitOfWork.CompleteAsync();
-
-		return booking.ToDto();
+ 			await transaction.RollbackAsync();
+			throw;
+		}
 	}
 
 	public async Task<BookingResponseDto?> GetBookingByIdAsync(Guid id)
@@ -71,14 +98,14 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 		return booking.ToDto();
 	}
 
-	public async Task<bool> CheckAvailabilityAsync(Guid resourceId, DateTime startTime, DateTime endTime)
+	public async Task<bool> CheckAvailabilityAsync(string resourceId, DateTime startTime, DateTime endTime)
 	{
 		if (startTime >= endTime)
 		{
 			throw new ArgumentException("Start time must be earlier than end time.");
 		}
 
-		return await bookingRepository.IsResourceAvailableAsync(resourceId.ToString(), startTime, endTime);
+		return await bookingRepository.IsResourceAvailableAsync(resourceId, startTime, endTime);
 	}
 
 	public async Task<PagedResult<BookingResponseDto>> GetAllBookingsAsync(PaginationParams paginationParams)

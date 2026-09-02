@@ -101,4 +101,14 @@ public class BookingRepository(AppDbContext context) : Repository<Booking, Guid>
 			.FirstOrDefaultAsync(b => b.Id == id, cancellationToken);
 	}
 
+
+	public async Task<IEnumerable<Booking>> GetActiveBookingsForResourceAsync(string resourceId, DateTime startOfDay, DateTime endOfDay)
+	{
+		return await _context.Bookings
+			.Where(b => b.ResourceId == resourceId &&
+						b.Status != BookingStatus.Canceled &&
+						b.StartDateTime < endOfDay &&
+						b.EndDateTime > startOfDay)
+			.ToListAsync();
+	}
 }

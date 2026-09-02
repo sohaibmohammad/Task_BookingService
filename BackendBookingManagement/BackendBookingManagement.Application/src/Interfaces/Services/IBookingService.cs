@@ -17,7 +17,8 @@ namespace BackendBookingManagement.Application.src.Interfaces.Services
 
 		Task<BookingResponseDto> UpdateBookingStatusAsync(Guid id, BookingStatus newStatus);
 
-		Task<bool> CheckAvailabilityAsync(Guid resourceId, DateTime startTime, DateTime endTime);
+		Task<bool> CheckAvailabilityAsync(string resourceId, DateTime startTime, DateTime endTime);
 		Task<IEnumerable<BookingResponseDto>> GetUserBookingsAsync(GetUserBookingsQueryDto queryDto);
+		Task<IEnumerable<BookedTimeSlotDto>> GetBookedTimeSlotsAsync(string resourceId, DateTime date);
 	}
 }
