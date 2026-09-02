@@ -2,7 +2,7 @@
 
 ## 📋 Table of Contents
 1. [Design Write-Up](#03-design-write-up)
-2. [API Documentation](#-simple-api-documentation)
+2. [API Documentation](#-api-documentation)
 3. [Testing](#-tests)
 
 ---
@@ -30,9 +30,9 @@ We assumed that multiple users might attempt to reserve high-demand resources si
 
 ---
 
-## 🔌 Simple API Documentation
+## 🔌 API Documentation
 
-### 1. Get Bookings by Resource (with Date Range & Pagination)
+### 1. Get Resource Bookings (with Date Range, Pagination & Caching)
 * **Endpoint:** `GET /api/bookings/resource/{resourceId}`
 * **Query Parameters:** 
   * `StartDate` *(optional)*
@@ -40,7 +40,7 @@ We assumed that multiple users might attempt to reserve high-demand resources si
   * `Status` *(optional)*
   * `PageNumber` *(default: 1)*
   * `PageSize` *(default: 10)*
-* **Description:** Retrieves paginated bookings for a specific resource. Automatically maps past-date active bookings to "Completed" dynamically.
+* **Description:** Retrieves paginated and filtered bookings for a specific resource. **(Performance Optimization):** Resource availability states and metadata leverage an integrated caching layer to minimize direct database read queries and boost response times. Automatically maps past-date active bookings to "Completed" dynamically.
 
 ### 2. Create Booking
 * **Endpoint:** `POST /api/bookings`
