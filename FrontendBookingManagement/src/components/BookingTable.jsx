@@ -2,14 +2,12 @@ import React, { useState, useEffect, useRef } from "react";
 import { bookingService } from "../Api/bookingService";
 
 export default function BookingTable({ resources, loadingResources }) {
-  // 1. حالات الحقول المؤقتة (داخل الـ inputs)
-  const [selectedResource, setSelectedResource] = useState("");
+   const [selectedResource, setSelectedResource] = useState("");
   const [startDate, setStartDate] = useState("");
   const [endDate, setEndDate] = useState("");
   const [status, setStatus] = useState("");
 
-  // 2. الفلاتر المعتمدة التي يتم جلب البيانات بناءً عليها فعلياً
-  const [appliedFilters, setAppliedFilters] = useState({
+   const [appliedFilters, setAppliedFilters] = useState({
     resourceId: "",
     startDate: "",
     endDate: "",
@@ -27,8 +25,7 @@ export default function BookingTable({ resources, loadingResources }) {
   const [isOpen, setIsOpen] = useState(false);
   const dropdownRef = useRef(null);
 
-  // تعيين أول مورد واعتراض الفلاتر أول مرة عند تحميل الموارد
-  useEffect(() => {
+   useEffect(() => {
     if (resources.length > 0 && !selectedResource) {
       const firstId = resources[0].id;
       setSelectedResource(firstId);
@@ -41,8 +38,7 @@ export default function BookingTable({ resources, loadingResources }) {
     }
   }, [resources]);
 
-  // جلب البيانات عند تغير الفلتر المعتمد أو رقم الصفحة فقط
-  useEffect(() => {
+   useEffect(() => {
     if (appliedFilters.resourceId) {
       fetchBookings();
     }
@@ -78,10 +74,9 @@ export default function BookingTable({ resources, loadingResources }) {
     }
   };
 
-  // عند الضغط على زر Apply Filter
-  const handleApplyFilter = (e) => {
+   const handleApplyFilter = (e) => {
     e.preventDefault();
-    setPageNumber(1); // العودة للصفحة الأولى عند تطبيق فلتر جديد
+    setPageNumber(1);         
     setAppliedFilters({
       resourceId: selectedResource,
       startDate,
@@ -121,8 +116,7 @@ export default function BookingTable({ resources, loadingResources }) {
     "Select resource...";
 
   const renderStatus = (st, isPast) => {
-    // إذا كان التاريخ قديم (في الماضي)، نعرض الحالة كـ Completed بغض النظر عن قيمتها الأصلية
-    if (isPast) {
+     if (isPast) {
       return (
         <span className="px-2 py-1 rounded text-xs bg-slate-700 text-slate-300 border border-slate-600">
           Completed
@@ -169,12 +163,10 @@ export default function BookingTable({ resources, loadingResources }) {
           Bookings for Resource (Filtered)
         </h2>
 
-        {/* نموذج الفلترة مع زر التطبيق */}
-        <form onSubmit={handleApplyFilter} className="bg-slate-900/50 p-4 rounded-xl border border-slate-700 mb-6">
+         <form onSubmit={handleApplyFilter} className="bg-slate-900/50 p-4 rounded-xl border border-slate-700 mb-6">
           <div className="grid grid-cols-1 md:grid-cols-4 gap-4 mb-4">
             
-            {/* اختيار المورد */}
-            <div className="relative w-full" ref={dropdownRef}>
+             <div className="relative w-full" ref={dropdownRef}>
               <label className="block text-xs text-slate-400 mb-1">Resource</label>
               <button
                 type="button"
@@ -209,8 +201,7 @@ export default function BookingTable({ resources, loadingResources }) {
               )}
             </div>
 
-            {/* تاريخ البدء (Start Date) */}
-            <div>
+             <div>
               <label className="block text-xs text-slate-400 mb-1">Start Date</label>
               <input
                 type="date"
@@ -220,8 +211,7 @@ export default function BookingTable({ resources, loadingResources }) {
               />
             </div>
 
-            {/* تاريخ الانتهاء (End Date) */}
-            <div>
+             <div>
               <label className="block text-xs text-slate-400 mb-1">End Date</label>
               <input
                 type="date"
@@ -231,8 +221,7 @@ export default function BookingTable({ resources, loadingResources }) {
               />
             </div>
 
-            {/* فلتر الحالة (Status) */}
-            <div>
+             <div>
               <label className="block text-xs text-slate-400 mb-1">Status</label>
               <select
                 value={status}
@@ -247,8 +236,7 @@ export default function BookingTable({ resources, loadingResources }) {
 
           </div>
 
-          {/* زر التطبيق (Filter Button) */}
-          <div className="flex justify-end">
+           <div className="flex justify-end">
             <button
               type="submit"
               className="bg-sky-600 hover:bg-sky-500 text-white px-5 py-2 rounded-lg text-sm font-semibold transition cursor-pointer"
@@ -258,8 +246,7 @@ export default function BookingTable({ resources, loadingResources }) {
           </div>
         </form>
 
-        {/* الجدول */}
-        <div className="overflow-x-auto mt-4">
+         <div className="overflow-x-auto mt-4">
           <table className="w-full text-left text-sm">
             <thead className="bg-slate-900 text-slate-400 uppercase text-xs">
               <tr>
@@ -284,11 +271,9 @@ export default function BookingTable({ resources, loadingResources }) {
                   const isConfirmed = b.status === 1 || b.status === "Confirmed";
                   const bStartDate = b.startDateTime ? new Date(b.startDateTime) : null;
                   
-                  // التحقق مما إذا كان التاريخ في الماضي
-                  const isPast = bStartDate ? bStartDate < now : false;
+                   const isPast = bStartDate ? bStartDate < now : false;
                   
-                  // الحذف ممنوع إذا كان التاريخ في الماضي أو الحالة ليست Confirmed
-                  const canDelete = isConfirmed && !isPast;
+                   const canDelete = isConfirmed && !isPast;
 
                   return (
                     <tr key={b.id} className="hover:bg-slate-700/50">
@@ -334,8 +319,7 @@ export default function BookingTable({ resources, loadingResources }) {
           </table>
         </div>
 
-        {/* أزرار التنقل بين الصفحات (Pagination) */}
-        {totalPages > 1 && (
+         {totalPages > 1 && (
           <div className="flex items-center justify-between mt-6 pt-4 border-t border-slate-700 text-sm text-slate-300">
             <div>
               Showing page{" "}
