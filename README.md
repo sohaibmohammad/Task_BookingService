@@ -14,7 +14,9 @@
 * **Enforcement:** This was enforced at both the application and database layers via an explicit availability check (`IsResourceAvailableAsync`). To maintain absolute data integrity and prevent double-booking, the check and subsequent insertion are wrapped inside an atomic database transaction (`BeginTransactionAsync`).
 
 ### B. What did you assume about concurrency?
-We assumed that multiple users might attempt to reserve high-demand resources simultaneously during peak hours. To handle race conditions safely without relying solely on application-level checks, we relied on relational database transaction boundaries and atomicity guarantees via the `UnitOfWork` pattern.
+We assumed that multiple users might attempt to reserve high-demand resources simultaneously, especially during peak operational hours.
+
+To handle these race conditions safely, we relied on transactional atomicity and isolation within the relational database. This ensures that even if two requests hit the availability check at the exact same millisecond, the database transaction boundaries and unique checks prevent conflicting writes from succeeding simultaneously.
 
 ### C. What would break in your design at scale, and where would the first bottleneck be?
 * **First Bottleneck:** Initially, frequent database round-trips for resource availability checks and resource retrieval create read latency and database load on popular resources.
