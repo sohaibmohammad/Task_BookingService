@@ -32,7 +32,11 @@ We assumed that multiple users might attempt to reserve high-demand resources si
 
 ## 🔌 API Documentation
 
-### 1. Get Resource Bookings (with Date Range, Pagination & Caching)
+### 1. Get All Resources (Cached for Dropdowns)
+* **Endpoint:** `GET /api/resources`
+* **Description:** Retrieves the list of all available resources. **(Caching & Frontend Optimization):** This endpoint is fully cached to instantly feed UI dropdowns/selectors on the frontend, eliminating repetitive database queries and ensuring blazing-fast rendering.
+
+### 2. Get Resource Bookings (with Date Range, Pagination & Caching)
 * **Endpoint:** `GET /api/bookings/resource/{resourceId}`
 * **Query Parameters:** 
   * `StartDate` *(optional)*
@@ -42,7 +46,7 @@ We assumed that multiple users might attempt to reserve high-demand resources si
   * `PageSize` *(default: 10)*
 * **Description:** Retrieves paginated and filtered bookings for a specific resource. **(Performance Optimization):** Resource availability states and metadata leverage an integrated caching layer to minimize direct database read queries and boost response times. Automatically maps past-date active bookings to "Completed" dynamically.
 
-### 2. Create Booking
+### 3. Create Booking
 * **Endpoint:** `POST /api/bookings`
 * **Request Body:**
   ```json
