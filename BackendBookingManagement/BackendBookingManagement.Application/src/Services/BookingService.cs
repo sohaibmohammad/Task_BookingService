@@ -152,6 +152,37 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 
 		return MapToResponseDto(booking);
 	}
+
+	public async Task<PagedResult<BookingResponseDto>> GetBookingsByResourceWithDateRangeAsync(
+	string resourceId,
+	GetResourceBookingsFilterDto filter)
+	{
+		var pagedBookings = await bookingRepository.GetBookingsByResourceWithDateRangeAsync(
+		resourceId,
+		filter.StartDate,
+		filter.EndDate,
+		filter.PageNumber,
+		filter.PageSize,
+		filter.Status,
+		trackChanges: false);
+
+		var itemDtos = pagedBookings.Items.Select(b => new BookingResponseDto
+		(
+			 b.Id,
+			b.ResourceId,
+			b.UserId,
+			b.StartDateTime,
+			b.EndDateTime,
+			 b.Status.ToString()
+		)).ToList();
+
+		return new PagedResult<BookingResponseDto>(
+			itemDtos,
+			pagedBookings.TotalCount,
+			pagedBookings.PageNumber,
+			pagedBookings.PageSize);
+	}
+
 	private static BookingResponseDto MapToResponseDto(Booking booking)
 	{
 		return new BookingResponseDto(
@@ -163,4 +194,5 @@ public class BookingService(IBookingRepository bookingRepository, IUnitOfWork un
 			booking.Status.ToString()
 		);
 	}
+
 }

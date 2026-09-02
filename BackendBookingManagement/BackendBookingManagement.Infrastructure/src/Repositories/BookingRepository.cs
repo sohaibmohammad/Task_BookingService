@@ -53,6 +53,11 @@ public class BookingRepository(AppDbContext context) : Repository<Booking, Guid>
 	}
 	public async Task<bool> IsResourceAvailableAsync(string resourceId, DateTime startDateTime, DateTime endDateTime, Guid? excludeBookingId = null, CancellationToken cancellationToken = default)
 	{
+		if (startDateTime < DateTime.UtcNow || endDateTime < DateTime.UtcNow)
+		{
+			throw new ArgumentException("Cannot create a booking in the past.");
+		}
+
 		var query = _context.Bookings
 			.AsNoTracking()
 			.Where(b => b.ResourceId == resourceId &&
@@ -111,4 +116,43 @@ public class BookingRepository(AppDbContext context) : Repository<Booking, Guid>
 						b.EndDateTime > startOfDay)
 			.ToListAsync();
 	}
+	public async Task<PagedResult<Booking>> GetBookingsByResourceWithDateRangeAsync(
+		string resourceId,
+		DateTime? startDate = null,
+		DateTime? endDate = null,
+		int pageNumber = 1,
+		int pageSize = 10,
+		BookingStatus? status = null,
+		bool trackChanges = false,
+		CancellationToken cancellationToken = default)
+	{
+		var query = _context.Bookings
+			.ApplyTracking(trackChanges)  
+			.Where(b => b.ResourceId == resourceId);
+
+ 		if (status.HasValue)
+		{
+			query = query.Where(b => b.Status == status.Value);
+		}
+
+ 		if (startDate.HasValue)
+		{
+			query = query.Where(b => b.StartDateTime >= startDate.Value);
+		}
+
+		if (endDate.HasValue)
+		{
+			query = query.Where(b => b.EndDateTime <= endDate.Value);
+		}
+
+		var totalCount = await query.CountAsync(cancellationToken);
+
+ 		var items = await query
+			.OrderByDescending(b => b.StartDateTime)
+			.ApplyPaging(pageNumber, pageSize)
+			.ToListAsync(cancellationToken);
+
+		return new PagedResult<Booking>(items, totalCount, pageNumber, pageSize);
+	}
+
 }

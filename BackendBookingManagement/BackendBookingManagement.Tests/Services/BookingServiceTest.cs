@@ -1,4 +1,5 @@
-﻿using BackendBookingManagement.Application.src.DTOs.Bookings;
+﻿using BackendBookingManagement.Application.src.Common;
+using BackendBookingManagement.Application.src.DTOs.Bookings;
 using BackendBookingManagement.Application.src.Interfaces.Repositories;
 using BackendBookingManagement.Application.src.Services;
 using BackendBookingManagement.Domain.src.Entity;
@@ -232,5 +233,64 @@ public class BookingServiceTest
 
 		result.Should().NotBeNull();
 		result.Id.Should().Be(bookingId);
+	}
+	[Fact]
+	public async Task GetBookingsByResourceWithDateRangeAsync_WhenRepositoryReturnsBookings_ShouldReturnPagedResult()
+	{
+ 		var resourceId = "resource-123";
+		var filter = new GetResourceBookingsFilterDto
+		{
+			PageNumber = 1,
+			PageSize = 10,
+			StartDate = null,
+			EndDate = null,
+			Status = null
+		};
+
+		var bookingId = Guid.NewGuid();
+		var bookingFromRepo = new Booking
+		{
+			Id = bookingId,
+			ResourceId = resourceId,
+			UserId = "user-456",
+			StartDateTime = DateTime.UtcNow.AddDays(1),
+			EndDateTime = DateTime.UtcNow.AddDays(1).AddHours(2),
+			Status = BookingStatus.Confirmed
+		};
+
+		var pagedResultFromRepo = new PagedResult<Booking>(
+			new List<Booking> { bookingFromRepo },
+			totalCount: 1,
+			pageNumber: 1,
+			pageSize: 10
+		);
+
+		var mockRepo = new Mock<IBookingRepository>();
+		var mockUnitOfWork = new Mock<IUnitOfWork>();
+
+		mockRepo.Setup(r => r.GetBookingsByResourceWithDateRangeAsync(
+			resourceId,
+			filter.StartDate,
+			filter.EndDate,
+			filter.PageNumber,
+			filter.PageSize,
+			filter.Status,
+			false))
+			.ReturnsAsync(pagedResultFromRepo);
+
+		var service = new BookingService(mockRepo.Object, mockUnitOfWork.Object);
+
+ 		var result = await service.GetBookingsByResourceWithDateRangeAsync(resourceId, filter);
+
+ 		result.Should().NotBeNull();
+		result.TotalCount.Should().Be(1);
+		result.PageNumber.Should().Be(1);
+		result.PageSize.Should().Be(10);
+		result.Items.Should().HaveCount(1);
+
+		var item = result.Items.First(); 
+		item.Id.Should().Be(bookingId);
+		item.ResourceId.Should().Be(resourceId);
+		item.Status.Should().Be("Confirmed");
 	}
 }

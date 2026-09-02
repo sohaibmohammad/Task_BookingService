@@ -74,4 +74,12 @@ public class BookingsController(IBookingService bookingService) : ControllerBase
 		var slots = await bookingService.GetBookedTimeSlotsAsync(resourceId, date);
 		return Ok(slots);
 	}
+	[HttpGet("resource/{resourceId}")]
+	public async Task<ActionResult<PagedResult<BookingResponseDto>>> GetBookingsByResource(
+		string resourceId,
+		[FromQuery] GetResourceBookingsFilterDto filter)
+	{
+		var pagedResult = await bookingService.GetBookingsByResourceWithDateRangeAsync(resourceId, filter);
+		return Ok(pagedResult);
+	}
 }

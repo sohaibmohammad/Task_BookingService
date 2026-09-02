@@ -36,6 +36,14 @@ public class Repository<T,TKey>(AppDbContext context) : IRepository<T,TKey> wher
 				.FirstOrDefaultAsync(e => EF.Property<TKey>(e, "Id")!.Equals(id), cancellationToken);
 	}
 
+	public async Task<IEnumerable<T>> GetAllAsync(bool trackChanges = false, CancellationToken cancellationToken = default)
+	{
+		return await _dbSet
+			.ApplyTracking(trackChanges)
+			.ToListAsync(cancellationToken);
+	}
+
+
 	public async Task<PagedResult<T>> GetPagedAsync(int pageNumber, int pageSize, CancellationToken cancellationToken = default)
 	{
 		var totalCount = await _dbSet.CountAsync(cancellationToken);

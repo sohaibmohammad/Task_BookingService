@@ -20,5 +20,6 @@ namespace BackendBookingManagement.Application.src.Interfaces.Services
 		Task<bool> CheckAvailabilityAsync(string resourceId, DateTime startTime, DateTime endTime);
 		Task<IEnumerable<BookingResponseDto>> GetUserBookingsAsync(GetUserBookingsQueryDto queryDto);
 		Task<IEnumerable<BookedTimeSlotDto>> GetBookedTimeSlotsAsync(string resourceId, DateTime date);
+		Task<PagedResult<BookingResponseDto>> GetBookingsByResourceWithDateRangeAsync(string resourceId, GetResourceBookingsFilterDto filter);
 	}
 }
