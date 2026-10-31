@@ -49,8 +49,8 @@ To handle these race conditions safely, we relied on transactional atomicity and
 * **Description:** Retrieves paginated and filtered bookings for a specific resource. **(Performance Optimization):** Resource availability states and metadata leverage an integrated caching layer to minimize direct database read queries and boost response times. Automatically maps past-date active bookings to "Completed" dynamically.
 
 ### 3. Create Booking
-* **Endpoint:** `POST /api/bookings`
-* **Request Body:**
+* ***Endpoint:** `POST /api/bookings`
+* ***Request Body:**
   ```json
   {
     "resourceId": "string",
