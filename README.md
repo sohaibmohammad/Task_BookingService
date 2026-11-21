@@ -5,7 +5,6 @@
 2. [API Documentation](#-api-documentation)
 3. [Testing](#-tests)
 
----
 
 ## 03. Design Write-Up
 
